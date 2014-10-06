@@ -37,6 +37,11 @@ public class Person
     numberOfPeople++;
   }// Person(String, int, String)
 
+  public Person(String name, int age)
+  {
+      this.name = name;
+      this.age = age;
+  }
   /**
    * Make a brand new baby person
    * 
@@ -46,7 +51,7 @@ public class Person
   {
     this.name = name;
     this.age = 0;
-    this.hungry = true;;
+    this.hungry = true;
     this.pgp = "ze";
     numberOfPeople++;
   }// Person(String)
@@ -54,6 +59,7 @@ public class Person
   //+-----------+-------------------------------------------------------
   //| Methods   |
   //+-----------+
+  
   /**
    * Determine whether this person is hungry
    * @return true if hungry, false otherwise
@@ -73,19 +79,31 @@ public class Person
   }// eat()
 
   /**
-   * Feed given person
+   * Let society feed a person
    * 
-   * @param baby
+   * @param baby, the Person to be fed
+   * @param feeder, the feeding person
+   * @post baby.hungry == false
    */
-  public static void feed(Person baby)
+  public static String feed(Person baby)
   {
     baby.hungry = false;
+    return baby.name;
   }// feed(Person)
 
+  
+  public String toString()
+  {
+      return this.name + ", " + this.age;
+  }//toString
+  
+
+  
   public static void main(String[] args)
   {
     PrintWriter pen = new PrintWriter(System.out, true);
     
+    System.out.println();
     // Make an adult person
     Person parent = new Person("Peter", 45, "he");
     
@@ -106,6 +124,6 @@ public class Person
         feed(baby);
         pen.println(baby.name + " was fed. Is " + baby.pgp + " hungry now? " + baby.hungry());
       }
-    
-  }
-}
+    pen.close();
+  }// main
+}// Person class
